@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Machado de Assis</title>	
+
+	<link href='//fonts.googleapis.com/css?family=Inknut Antiqua' rel='stylesheet'>
+
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+
+	<link rel="stylesheet" type="text/css" href="{% static 'machado/bootstrap-3.3.7-dist/css/bootstrap.css' %}">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script type="text/javascript" src="{% static 'machado/bootstrap-3.3.7-dist/js/bootstrap.js' %}"></script>
+
+	<script type="text/javascript" src="{% static 'machado/jquery/jquery-3.1.1.js' %}"></script>
+
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+
+	<link rel="stylesheet" type="text/css" href="{% static 'machado/style.css' %}">
+	<!-- <link rel="stylesheet" type="text/css" href="{% static 'machado/non-responsive.css' %}"> -->
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="{% url 'index' %}"><span>Machado</span></a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active">
+						<a href="{% url 'index' %}"> INÍCIO </a>
+					</li>
+					
+					<li>
+						<a href="{% url 'obraCompleta' %}"> OBRA COMPLETA </a>
+					</li>
+					
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">GÊNEROS <span class="caret"></span></a>
+						{% if generos %}
+						<ul class="dropdown-menu">
+							{% for genero in generos %}
+							<li>
+								<a href="{% url 'detalharGenero' genero.id %}">{{ genero }}</a>
+							</li>
+							{% endfor %}
+						</ul>
+						{% else %}
+						<p> Não há gêneros cadastrados. </p>
+						{% endif %}
+					</li>
+				</ul>
+				<form class="navbar-form navbar-right" action="{% url 'resultadosBusca' %}" method="get">
+					<div class="input-group">
+						<input type="text" class="form-control" size=30 name="entrada" placeholder="Pesquisar">
+					</div>
+				</form>
+			</div>
+		</div>
+	</nav>
+
+	<div class="jumbotron text-center">
+		<div class="container">
+			<h1 class="titulo">Machado de Assis</h1>
+			<p class="principal">A obra completa do maior nome da literatura brasileira.</p>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row text-center">
+			<div class="col-sm-4">
+				<h3>Obra completa</h3>
+				<p>Neste site, você encontrará a listagem completa das obras de Machado de Assim. Através de um filtro, você poderá refinar a sua pesquisa.</p>
+			</div>
+
+			<div class="col-sm-4">
+				<h3>Gêneros</h3>
+				<p>Machado de Assis tem um vasto acervo de obras, que vão desde romances e textos teatrais a críticas e traduções.</p>
+			</div>
+
+			<div class="col-sm-4">
+				<h3>Pesquisa textual</h3>
+				<p>Através de um mecanismo de busca textual, o leitor poderá encontrar sua obra favorita. Basta digitar um termo, por exemplo, "olhos de cigana oblíqua", que será exibida a seleção de todos os textos que satisfazem sua pesquisa.</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- <footer class="footer">
+		<div class="container">
+			<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+		</div>
+	</footer> -->
+
+</body>
+</html>
+
